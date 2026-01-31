@@ -1,6 +1,6 @@
 from src.preprocessing import preprocess_text
 from src.feature_extraction import extract_tfidf_features
-from src.similarity import cosine_similarity
+from src.similarity import calculate_similarity
 from src.recommendations import find_missing_keywords
 
 def load_text(file_path: str) -> str:
@@ -20,7 +20,7 @@ def main():
 
     resume_vec, job_vec, _ = extract_tfidf_features(clean_resume, clean_job)
 
-    match_percentage = cosine_similarity(resume_vec, job_vec)
+    match_percentage = calculate_similarity(resume_vec, job_vec)
 
     missing_keywords = find_missing_keywords(clean_resume, clean_job)
 

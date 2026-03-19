@@ -89,7 +89,7 @@ if st.button("Analyze"):
         elif score < 50:
             st.error("❌ Needs improvement")
         else:
-            st.info("⚠️ متوسط match")
+            st.info("No Match!")
 
         # Missing Keywords
         st.subheader("🔑 Missing Keywords")

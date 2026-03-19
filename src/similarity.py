@@ -1,10 +1,24 @@
 from sklearn.metrics.pairwise import cosine_similarity
 
 
+
+def calculate_keyword_score(resume_text: str, job_text: str) -> float:
+    from src.keyword_extraction import extract_keywords
+
+    resume_keywords = set(extract_keywords(resume_text))
+    job_keywords = set(extract_keywords(job_text))
+
+    if not job_keywords:
+        return 0.0
+
+    matched = resume_keywords.intersection(job_keywords)
+
+    return (len(matched) / len(job_keywords)) * 100
+
 def calculate_similarity(resume_vector, job_vector) -> float:
     similarity_score = cosine_similarity(resume_vector, job_vector)[0][0]
 
-    return round(similarity_score * 100, 2)
+    return round(similarity_score, 2)
 
 
 if __name__ == "__main__":
